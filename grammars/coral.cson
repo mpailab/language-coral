@@ -1,0 +1,85 @@
+scopeName : 'source.coral'
+name      : 'Coral'
+fileTypes : ['coral']
+
+patterns: [
+  {	include: '#comments' }
+  {	include: '#numbers'	}
+  {	include: '#constants'	}
+  {	include: '#logsymbols'	}
+  {	include: '#keywords' }
+  {	include: '#functions'	}
+  {	include: '#units'	}
+]
+
+repository:
+	comments:
+		patterns: [
+			{
+				begin: '--'
+				end: '$'
+				name: 'comment.line.double-dash.coral'
+			}
+			{
+				begin: '\\{-'
+				beginCaptures:
+					'0':
+						name: 'punctuation.definition.comment.begin.coral'
+				end: '-\\}'
+				endCaptures:
+					'0':
+						name: 'punctuation.definition.comment.end.coral'
+				name: 'comment.block.coral'
+			}
+		]
+
+	numbers:
+		patterns: [
+			{
+				match: '\\b(([0-9]+\\.?[0-9]*)|(\\.[0-9]+))((E|e)(\\+|-)?[0-9]+)?\\b'
+				name: 'constant.numeric.coral'
+			}
+		]
+
+	constants:
+		patterns: [
+			{
+				match: '\\b(True|False)\\b'
+				name: 'constant.language.coral'
+			}
+		]
+
+	logsymbols:
+		patterns: [
+			{
+				comment: 'Logical symbols'
+				match: '\\b(boundVariables|conclusion|equality|equivalence|forall|header|left-to-right|neg|plus|premises|right-to-left|theorem)\\b'
+				name: 'string.quoted.double.coral'
+			}
+		]
+
+	keywords:
+		patterns: [
+			{
+				match: '\\b(do|done|if|else|case|of|where|in|for)\\b'
+				name: 'keyword.control.coral'
+			}
+		]
+
+	functions:
+		patterns: [
+      {
+        comment: 'Coral built-in functions'
+        match: '\\b(and|eq|or|replace)\\b'
+        name: 'support.function.coral'
+      }
+		]
+
+	units:
+		patterns: [
+      {
+        comment: 'Informational units'
+        match: '\\b[A-Z][A-Za-z0-9_]*\\b'
+        name: 'entity.name.tag.corel'
+      }
+		]

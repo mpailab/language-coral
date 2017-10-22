@@ -1,0 +1,5 @@
+'.source.coral':
+  'editor':
+    'commentStart': '-- '
+    'increaseIndentPattern': '^\\s*(do|else|case)\\b.*$'
+		'decreaseIndentPattern': '^\\s*(done)\\b$'
