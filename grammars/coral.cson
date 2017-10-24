@@ -61,7 +61,7 @@ repository:
 	keywords:
 		patterns: [
 			{
-				match: '\\b(do|done|if|else|case|of|where|in|for)\\b'
+				match: '\\b(do|done|if|case|of|where)\\b'
 				name: 'keyword.control.coral'
 			}
 		]
@@ -70,7 +70,7 @@ repository:
 		patterns: [
       {
         comment: 'Coral built-in functions'
-        match: '\\b(and|eq|or|replace)\\b'
+        match: '\\b(and|args|eq|in|or|replace)\\b'
         name: 'support.function.coral'
       }
 		]
