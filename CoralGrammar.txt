@@ -1,0 +1,28 @@
+tokens:
+
+Variable :: t[0-9]+ | _\w+
+Integer :: [0-9]+
+Bool :: True | False
+Global :: [A-Z][A-Za-z_]+
+Symbol :: \w+ (if in database)
+
+Sequence<T> :: T {"," T}
+List :: "[" [Sequence<PTerm>] "]"
+Tuple :: "(" Sequence<PTerm> ")"
+PTerm :: Variable | Integer | Bool | Global | Symbol
+	| List
+	| Tuple
+	| PTerm (and | or | eq | ne | in) PTerm
+	| (not | args) PTerm
+	| replace PTerm PTerm
+
+Do :: "do" tab(+1, Program)
+Where:: "where" PTerm
+	| "where" {tab(+n+1, PTerm)}
+
+Program ::
+	  "done"
+	| "if" PTerm Do
+	| "case" PTerm "of" [Where] {tab(+1, PTerm Do)}
+	| PTerm "=" PTerm [Where]
+	| Sequence<PTerm> "<-" PTerm [Where]
